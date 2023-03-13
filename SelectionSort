@@ -1,0 +1,46 @@
+SelectionSort
+
+import java.util.Random;
+
+public class Main {
+    public static void main(String[] args) {
+        //Random dizi oluşturma
+        int temp;
+        Random random = new Random();
+        int dizi[] = new int[10000];
+        for (int i = 1; i < dizi.length; i++) {
+            dizi[i] = random.nextInt(10000); //diziye eklenen sayılar absürt olmasın diye en fazla 100 olacak şekilde sınırladım.
+        }
+        // diziyi yazdırma
+
+        for (int i = 1; i < dizi.length; i++) {
+            System.out.print(dizi[i] + " \t");
+        }
+
+        //sıralama algoritması selection sort
+        for (int i = 0; i<dizi.length-1;i++) {
+            int index = i;
+
+            //find the smaller number in remaining sub array.
+            for (int j = i+1; j<dizi.length;j++){
+                if (dizi[j]<dizi[index]){
+                    index = j;
+                }
+            }
+
+            //swap the smallest number in remaining sub array.
+            int smallerNumber = dizi[index];
+            dizi[index] = dizi[i];
+            dizi[i] = smallerNumber;
+        }
+
+        System.out.println("Sırlanmoş dizi : ");
+        for (int i = 1; i < dizi.length; i++) {
+            System.out.print(dizi[i] + " \t");
+        }
+
+
+
+
+    }
+}
