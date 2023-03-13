@@ -1,0 +1,66 @@
+LinearSearch
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Rastgele 10.000 sayılık bir dizi : ");
+
+        //Random dizi oluşturma
+        int temp;
+        Random random = new Random();
+        int dizi[] = new int[10000];
+        for (int i = 1; i < dizi.length; i++) {
+            dizi[i] = random.nextInt(100000); //diziye eklenen sayılar absürt olmasın diye en fazla 100 olacak şekilde sınırladım.
+        }
+        // diziyi yazdırma
+
+        for (int i = 1; i < dizi.length; i++) {
+            System.out.print(dizi[i] + " \t");
+        }
+
+        //BruteForce(Kaba Kuvvet) algoritması ile arama yapma örneği :
+
+        //Linear Search (Doğrusal Arama) :,
+        int aranan;
+
+
+
+        //sıralama algoritması     (linear Searcda sırlamaya ihtiyaç yok)
+        for (int i = 0; i<dizi.length-1;i++) {
+            int index = i;
+
+            //find the smaller number in remaining sub array.
+            for (int j = i+1; j<dizi.length;j++){
+                if (dizi[j]<dizi[index]){
+                    index = j;
+                }
+            }
+
+            //swap the smallest number in remaining sub array.
+            int smallerNumber = dizi[index];
+            dizi[index] = dizi[i];
+            dizi[i] = smallerNumber;
+        }
+
+        System.out.println("\nSırlanmış dizi : ");
+        for (int i = 1; i < dizi.length; i++) {
+            System.out.print(dizi[i] + " \t");
+        }
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Aranacak Sayıyı Giriniz.");
+        aranan = scanner.nextInt();
+
+
+        for(int i = 0 ; i < dizi.length ; i++){
+            if (dizi[i] == aranan ){
+                System.out.println("Aranan sayı bulundu. Sayı : "+dizi[i]+"Sayının dizideki sırası : "+i);
+                break;
+            }
+            }
+        }
+
+
+    }
