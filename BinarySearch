@@ -1,0 +1,71 @@
+BinarySearch
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+
+        System.out.println("Rastgele 10.000 sayılık bir dizi : ");
+
+        //Random dizi oluşturma
+        int temp;
+        Random random = new Random();
+        int dizi[] = new int[10000];
+        for (int i = 1; i < dizi.length; i++) {
+            dizi[i] = random.nextInt(1000); //diziye eklenen sayılar absürt olmasın diye en fazla 100 olacak şekilde sınırladım.
+        }
+        // diziyi yazdırma
+
+        for (int i = 1; i < dizi.length; i++) {
+            System.out.print(dizi[i] + " \t");
+        }
+
+        //sıralama algoritması
+        for (int i = 0; i<dizi.length-1;i++) {
+            int index = i;
+
+            //find the smaller number in remaining sub array.
+            for (int j = i+1; j<dizi.length;j++){
+                if (dizi[j]<dizi[index]){
+                    index = j;
+                }
+            }
+
+            //swap the smallest number in remaining sub array.
+            int smallerNumber = dizi[index];
+            dizi[index] = dizi[i];
+            dizi[i] = smallerNumber;
+        }
+        // sıralanmış diziyi yazdırma
+        System.out.println(" \n Sıralanmış dizi : \n");
+        for (int i = 1; i < dizi.length; i++) {
+            System.out.print(dizi[i] + " \t");
+        }
+
+
+
+        System.out.println("\nAranacak Sayıyı giriniz");
+        Scanner scanner = new Scanner(System.in);
+        int aranan = scanner.nextInt();
+
+        //Binary Search
+        int l = 0, r = dizi.length - 1;
+        while (l <= r) {
+            int m = l + (r - l) / 2;
+
+            //x değeri ortanca değer mi kontrol et
+            if (dizi[m] == aranan )
+                System.out.println("Aranan sayı bulundu. Aranan Sayı  : " + aranan );
+
+            // x ortanca değerden büyükse, sol yarıyı görmezden gelir
+            if (dizi[m] < aranan)
+                l = m + 1;
+
+                // x ortanca değerden küçükse, sağ yarıyı görmezden gelir
+            else
+                r = m - 1;
+        }
+
+    }
+}
